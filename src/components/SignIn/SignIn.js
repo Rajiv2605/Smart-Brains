@@ -29,8 +29,9 @@ class SignIn extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        // console.log("Email: ", this.state.signInEmail, "Password: ", this.state.signInPassword);
-        if(data.id === '123'){
+        console.log("DAta is: ", data);
+        if(data.id > 0) {
+          this.props.checkSignin(true);
           this.props.loadUser(data);
           this.props.onRouteChange('home');
         }
@@ -56,7 +57,7 @@ class SignIn extends Component {
       </div>
     </fieldset>
     <div className="">
-      <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" onClick={() => { this.onSubmitSignin(); checkSignin(true)}}>Sign in</button>
+      <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" onClick={this.onSubmitSignin}>Sign in</button>
       {/* <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" onClick={() => { this.onSubmitSignin(); checkSignin(true)}} value="Sign in"/> */}
     </div>
     <div className="lh-copy mt3">
