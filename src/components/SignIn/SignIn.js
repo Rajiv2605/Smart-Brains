@@ -29,9 +29,11 @@ class SignIn extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Email: ", this.state.signInEmail, "Password: ", this.state.signInPassword);
-        if(data === '123')
+        // console.log("Email: ", this.state.signInEmail, "Password: ", this.state.signInPassword);
+        if(data.id === '123'){
+          this.props.loadUser(data);
           this.props.onRouteChange('home');
+        }
       })
     console.log(this.state);
   }

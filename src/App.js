@@ -73,7 +73,7 @@ class App extends Component {
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
-    // console.log("(W, H): ", width, height);
+    console.log("ID: ", this.state.user.id);
     fetch('http://localhost:3000/image', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
@@ -125,7 +125,7 @@ class App extends Component {
         />
         <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.signedIn} checkSignin={this.isSignedIn}/>
         {this.state.route === 'signin' ?
-          <SignIn onRouteChange={this.onRouteChange} checkSignin={this.isSignedIn}/>
+          <SignIn onRouteChange={this.onRouteChange} checkSignin={this.isSignedIn} loadUser={this.loadUser}/>
           :(
             this.state.route === 'register' ?
               <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
