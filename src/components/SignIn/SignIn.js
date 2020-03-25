@@ -18,22 +18,22 @@ class SignIn extends Component {
   }
 
   onSubmitSignin = () => {
-    // console.log("Clicked signin");
-    // fetch('http://localhost:3000/signin', {
-    //   method: 'post',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({
-    //     email: this.state.signInEmail,
-    //     password: this.state.signInPassword
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log("Email: ", this.state.signInEmail, "Password: ", this.state.signInPassword);
-    //     if(data === 'success')
-    //       this.props.onRouteChange('home');
-    //   })
-    // console.log(this.state);
+    console.log("Clicked signin");
+    fetch('http://localhost:3000/signin', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Email: ", this.state.signInEmail, "Password: ", this.state.signInPassword);
+        if(data === '123')
+          this.props.onRouteChange('home');
+      })
+    console.log(this.state);
   }
 
   render() {
@@ -41,7 +41,7 @@ class SignIn extends Component {
     return (
     <article className="br3 ba dark-grey b--black-10 mv4 w-100 w-50-m w-25-l mw5 shadow center">
     <main className="pa4 black-80">
-    <form className="measure">
+    <div className="measure">
     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
       <legend className="f1 fw6 ph0 mh0">Sign In</legend>
       <div className="mt3">
@@ -54,12 +54,13 @@ class SignIn extends Component {
       </div>
     </fieldset>
     <div className="">
-      <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" onClick={() => { this.onSubmitSignin(); checkSignin(true)}} value="Sign in"/>
+      <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" onClick={() => { this.onSubmitSignin(); checkSignin(true)}}>Sign in</button>
+      {/* <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" onClick={() => { this.onSubmitSignin(); checkSignin(true)}} value="Sign in"/> */}
     </div>
     <div className="lh-copy mt3">
       <p onClick={()=>onRouteChange('register')} href="#0" className="f6 link dim black db pointer">Register</p>
     </div>
-    </form>
+    </div>
     </main>
     </article>
     )
