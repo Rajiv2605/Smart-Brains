@@ -101,6 +101,10 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  clearURL = () => {
+    this.setState({imageUrl: ''});
+  }
+
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
@@ -135,7 +139,7 @@ class App extends Component {
                 <ImageLinkForm onInputChange={this.onInputChange}
                                 onButtonSubmit={this.onSubmit}
                                 imageUrl={this.state.imageUrl}/>
-                <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+                <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} clearURL={this.clearURL} />
               </div>
           )
         }
