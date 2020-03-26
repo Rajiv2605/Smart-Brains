@@ -7,7 +7,6 @@ class FaceRecognition extends Component {
     }
     render() {
         const { box, imageUrl } = this.props;
-        console.log("Box: ", box);
         return(
             <div className='center ma'>
                 <div className='absolute mt2'>

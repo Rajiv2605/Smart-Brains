@@ -18,7 +18,6 @@ class SignIn extends Component {
   }
 
   onSubmitSignin = () => {
-    console.log("Clicked signin");
     fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -29,14 +28,12 @@ class SignIn extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("DAta is: ", data);
         if(data.id > 0) {
           this.props.checkSignin(true);
           this.props.loadUser(data);
           this.props.onRouteChange('home');
         }
       })
-    console.log(this.state);
   }
 
   render() {

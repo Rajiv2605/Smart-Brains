@@ -9,12 +9,6 @@ import Rank from './components/Rank/Rank';
 import Register from './components/Register/Register';
 import 'tachyons';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
-
-const app = new Clarifai.App({
-  apiKey: '5e510ab73ee240e7a846b9caee5c38f3'
- });
- 
 
 const particlesOptions = {
   particles: {
@@ -31,7 +25,6 @@ const particlesOptions = {
 class App extends Component {
   constructor() {
     super();
-    console.log("App constructor called!");
     this.state = {
       input: '',
       imageUrl: '',
@@ -48,12 +41,6 @@ class App extends Component {
       }
     }
   }
-
-  // componentDidMount() {
-  //   fetch('http://localhost:3000')
-  //     .then(response => response.json())
-  //     .then(console.log)
-  // }
 
   loadUser = (data) => {
     this.setState({
@@ -73,7 +60,6 @@ class App extends Component {
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
-    console.log("ID: ", this.state.user.id);
     fetch('http://localhost:3000/image', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
@@ -107,10 +93,17 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
-      response => this.displayFaceBox(this.calculateFaceLocation(response))
-    ).catch(err => console.log(err));
-  }
+    fetch('http://localhost:3000/imageUrl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+    })})
+    .then(r => r.json()).then(response => {
+      return this.displayFaceBox(this.calculateFaceLocation(response))
+    })
+    .catch(err => console.log(err))
+}
 
   onRouteChange = (route) => {
     this.setState({route: route});
@@ -121,7 +114,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("Route value: ", this.state.route);
     return (
       <div className="App">
         <Particles className="particles" 
