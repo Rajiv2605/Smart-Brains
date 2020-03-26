@@ -65,6 +65,9 @@ class Register extends Component {
       <button className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" onClick={this.onSubmitRegister}>Register</button>
       {/* <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" onClick={this.onSubmitRegister} value="Register"/> */}
     </div>
+    <div className="lh-copy mt3">
+      <p onClick={()=>this.props.onRouteChange('signin')} href="#0" className="f6 link dim black db pointer">Sign In</p>
+    </div>
     </div>
     </main>
     </article>
