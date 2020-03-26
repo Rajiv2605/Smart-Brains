@@ -40,7 +40,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const {onRouteChange, checkSignin} = this.props;
+    const {onRouteChange} = this.props;
     return (
     <article className="br3 ba dark-grey b--black-10 mv4 w-100 w-50-m w-25-l mw5 shadow center">
     <main className="pa4 black-80">
